@@ -4,13 +4,13 @@
 }
 
 body {
-  background-image: url('background.jpg');
+  background-image: url('steel.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #controls{
-  background-color: #FAFAC9;
+  background-image: url('steel.png');;
   width: 400px;
   height: 200px;
   margin: 80px;
@@ -37,6 +37,7 @@ body {
 }
 
 button {
+  background-color: lightgrey;
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
   border: solid;
   border-width: thin;
