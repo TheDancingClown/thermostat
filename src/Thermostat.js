@@ -7,7 +7,11 @@ class Thermostat {
     this.maxEcoTemp = 25;
     this.maxTemp = 32;
     this.ecoMode = true;
-    this.temp = this.default;
+    if(!localStorage.getItem('temperature')) {
+      this.temp = this.default; }
+    else {
+      this.temp = parseInt(localStorage.getItem('temperature'),10);
+    }
   }
 
   increase() {
@@ -40,6 +44,9 @@ class Thermostat {
       this.ecoMode = false
     } else if(this.ecoMode == false) {
       this.ecoMode = true
+      if(this.temp > this.maxEcoTemp && this.ecoMode == true) {
+        this.temp = this.maxEcoTemp
+      }
     }
   }
 

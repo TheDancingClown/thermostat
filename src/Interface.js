@@ -35,6 +35,7 @@ $(function() {
 
   $('#ecomode').on('click', function() {
     thermostat.switchMode()
+    $("#message").text('')
     populateStorage()
   });
 
