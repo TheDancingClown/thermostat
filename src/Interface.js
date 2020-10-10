@@ -5,12 +5,16 @@ $(function() {
 
   function setStyles() {
     document.getElementById('temperature').textContent = thermostat.temp;
+    document.getElementById('eco').textContent = thermostat.ecoMode;
     showTemperature();
     showEcoMode();
+    displayWeather(document.getElementById('location').textContent)
 	}
 
   function populateStorage() {
     localStorage.setItem('temperature', document.getElementById('temperature').textContent);
+    localStorage.setItem('ecomode', thermostat.ecoMode);
+    localStorage.setItem('location', document.getElementById('location').textContent);
 		setStyles()
   }
   
@@ -29,8 +33,8 @@ $(function() {
   $("#reset").on("click", function() {
     localStorage.clear()
     thermostat.reset()
-    populateStorage()
     $("#temperature").text(thermostat.temp)
+    setStyles()
   });
 
   $('#ecomode').on('click', function() {
@@ -50,12 +54,36 @@ $(function() {
   };
 
   function showEcoMode() {
-    if(thermostat.ecoMode == true) {
+    if(thermostat.ecoMode == 'Eco') {
       $("#eco").text('eco')
     }
     else {
       $("#eco").text('')
     }
   }
+
+  $('#selectCity').on('submit', function(event) {
+		event.preventDefault();
+		let city = $('#city').val();
+    displayWeather(city);
+    $('#location').text(city);
+    populateStorage();
+	});
+
+  function displayWeather(city) {
+    city = $("#location").text(localStorage.getItem('location'))
+    if(city) {
+      var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+      var token = '&appid=2e32145359025f11feb76cabef2e20fd';
+      var units = '&units=metric';
+      $.get(url + token + units, function(data) {
+        $("#city-temp").text(data.main.temp); 
+        })
+      }
+    }
+
+    // function displayCity() {
+    //   $("#location").text(localStorage.getItem('location'))
+    // }
   
 });

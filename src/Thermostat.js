@@ -6,24 +6,19 @@ class Thermostat {
     this.minTemp = 10;
     this.maxEcoTemp = 25;
     this.maxTemp = 32;
-    this.ecoMode = true;
     if(!localStorage.getItem('temperature')) {
-      this.temp = this.default; }
+      this.temp = this.default;
+      this.ecoMode = 'Eco' }
     else {
+      this.ecoMode = localStorage.getItem('ecomode');
       this.temp = parseInt(localStorage.getItem('temperature'),10);
+      this.checkMaxTemp()
     }
   }
 
   increase() {
     this.temp ++;
-    if(this.temp > this.maxEcoTemp && this.ecoMode == true) {
-      this.temp = this.maxEcoTemp
-      return 'Turn off Eco Mode';
-    } else if(this.temp > this.maxTemp && this.ecoMode == false) {
-      this.temp = this.maxTemp
-      return 'Maximum temperature reached';
-    }
-    return ''
+    return this.checkMaxTemp()
   }
 
   decrease() {
@@ -37,17 +32,28 @@ class Thermostat {
 
   reset() {
     this.temp = this.default
+    this.ecoMode = 'Eco'
   }
 
   switchMode() {
-    if(this.ecoMode == true) {
-      this.ecoMode = false
-    } else if(this.ecoMode == false) {
-      this.ecoMode = true
-      if(this.temp > this.maxEcoTemp && this.ecoMode == true) {
-        this.temp = this.maxEcoTemp
-      }
+    if(this.ecoMode == 'Eco') {
+      this.ecoMode = ''
+    } else if(this.ecoMode == '') {
+      this.ecoMode = 'Eco'
+      this.checkMaxTemp()
     }
+  }
+
+  checkMaxTemp() {
+    if(this.temp > this.maxEcoTemp && this.ecoMode == 'Eco') {
+      this.temp = this.maxEcoTemp
+      return 'Turn off Eco Mode';
+    }
+    else if(this.temp > this.maxTemp && this.ecoMode == '') {
+      this.temp = this.maxTemp
+      return 'Maximum temperature reached';
+    }
+    else return ''
   }
 
   energyUsage() {
