@@ -41,4 +41,13 @@ describe("Thermostat", function() {
     })
   })
 
+  describe('modeSwitch', function() {
+    it('can switch between eco mode', function() {
+      thermo.switchMode()
+      expect(thermo.ecoMode).toBe(false)
+      thermo.switchMode()
+      expect(thermo.ecoMode).toBe(true)
+    })
+  })
+
 });

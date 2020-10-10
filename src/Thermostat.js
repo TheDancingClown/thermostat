@@ -23,4 +23,12 @@ class Thermostat {
     this.temp = this.default
   }
 
+  switchMode() {
+    if(this.ecoMode == true) {
+      this.ecoMode = false
+    } else if(this.ecoMode == false) {
+      this.ecoMode = true
+    }
+  }
+
 }
