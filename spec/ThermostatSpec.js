@@ -30,4 +30,12 @@ describe("Thermostat", function() {
     })
   });
 
+  describe('reset', function() {
+    it('should reset the temperature back to 20', function() {
+      thermo.decrease()
+      thermo.reset()
+      expect(thermo.temp).toEqual(20)
+    })
+  })
+
 });
