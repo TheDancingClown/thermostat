@@ -63,4 +63,23 @@ describe("Thermostat", function() {
     })
   })
 
+  describe('energyUsage', function() {
+    it('shows as medium as default', function() {
+      expect(thermo.energyUsage()).toEqual('medium')
+    })
+    it('shows as low when the temp is below 18', function() {
+      for (let i = 0; i < 7; i++) {
+        thermo.decrease()
+      }
+      expect(thermo.energyUsage()).toEqual('low')
+    })
+    it('shows as high when the temp is above 25', function() {
+      thermo.switchMode()
+      for (let i = 0; i < 6; i++) {
+        thermo.increase()
+      }
+      expect(thermo.energyUsage()).toEqual('high')
+    })
+  })
+
 });

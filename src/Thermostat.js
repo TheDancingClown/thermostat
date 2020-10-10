@@ -38,4 +38,14 @@ class Thermostat {
     }
   }
 
+  energyUsage() {
+    if(this.temp < 18) {
+      return 'low'
+    } else if(this.temp > 25) {
+      return 'high'
+    } else {
+    return 'medium'
+    }
+  }
+
 }
