@@ -4,6 +4,7 @@ class Thermostat {
   constructor() {
     this.default = 20
     this.minTemp = 10;
+    this.ecoMode = true
     this.temp = this.default;
   }
 

@@ -9,6 +9,9 @@ describe("Thermostat", function() {
     thermo.temp
     expect(thermo.temp).toEqual(20);
   });
+  it('defaults in eco mode', function() {
+    expect(thermo.ecoMode).toBe(true)
+  })
 
   describe('increase', function() {
     it('should increment the temperature', function() {
