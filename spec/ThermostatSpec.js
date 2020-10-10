@@ -22,6 +22,12 @@ describe("Thermostat", function() {
       thermo.decrease()
       expect(thermo.temp).toEqual(19);
     })
+    it('cannot decrease below 10', function() {
+      for (var i = 0; i < 11; i++) {
+        thermo.decrease()
+      }
+      expect(thermo.temp).toEqual(10)
+    })
   });
 
 });
