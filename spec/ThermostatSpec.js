@@ -24,6 +24,13 @@ describe("Thermostat", function() {
       }
       expect(thermo.temp).toEqual(25)
     })
+    it('cannot increase above 32 when not in eco mode', function() {
+      thermo.switchMode()
+      for (let i = 0; i < 13; i++) {
+        thermo.increase()
+      }
+      expect(thermo.temp).toEqual(32)
+    })
   });
 
   describe('decrease', function() {

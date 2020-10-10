@@ -4,14 +4,17 @@ class Thermostat {
   constructor() {
     this.default = 20;
     this.minTemp = 10;
-    this.maxTemp = 25;
+    this.maxEcoTemp = 25;
+    this.maxTemp = 32;
     this.ecoMode = true;
     this.temp = this.default;
   }
 
   increase() {
     this.temp ++;
-    if(this.temp > this.maxTemp && this.ecoMode == true) {
+    if(this.temp > this.maxEcoTemp && this.ecoMode == true) {
+      this.temp = this.maxEcoTemp
+    } else if(this.temp > this.maxTemp && this.ecoMode == false) {
       this.temp = this.maxTemp
     }
   }
