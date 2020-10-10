@@ -9,4 +9,8 @@ class Thermostat {
     this.temp ++;
   }
 
+  decrease() {
+    this.temp --;
+  }
+
 }

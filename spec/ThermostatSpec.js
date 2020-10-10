@@ -17,4 +17,11 @@ describe("Thermostat", function() {
     })
   });
 
+  describe('decrease', function() {
+    it('should decrement the temperature', function() {
+      thermo.decrease()
+      expect(thermo.temp).toEqual(19);
+    })
+  });
+
 });
