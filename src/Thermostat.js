@@ -14,16 +14,21 @@ class Thermostat {
     this.temp ++;
     if(this.temp > this.maxEcoTemp && this.ecoMode == true) {
       this.temp = this.maxEcoTemp
+      return 'Turn off Eco Mode';
     } else if(this.temp > this.maxTemp && this.ecoMode == false) {
       this.temp = this.maxTemp
+      return 'Maximum temperature reached';
     }
+    return ''
   }
 
   decrease() {
     this.temp --;
     if(this.temp < this.minTemp) {
       this.temp = this.minTemp
+      return 'Minimum temperature reached';
     }
+    return ''
   }
 
   reset() {
