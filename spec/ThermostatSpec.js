@@ -18,6 +18,12 @@ describe("Thermostat", function() {
       thermo.increase()
       expect(thermo.temp).toEqual(21);
     })
+    it('cannot increase above 25 in eco mode', function() {
+      for (let i = 0; i < 6; i++) {
+        thermo.increase()
+      }
+      expect(thermo.temp).toEqual(25)
+    })
   });
 
   describe('decrease', function() {
@@ -26,7 +32,7 @@ describe("Thermostat", function() {
       expect(thermo.temp).toEqual(19);
     })
     it('cannot decrease below 10', function() {
-      for (var i = 0; i < 11; i++) {
+      for (let i = 0; i < 11; i++) {
         thermo.decrease()
       }
       expect(thermo.temp).toEqual(10)
